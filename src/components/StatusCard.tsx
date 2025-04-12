@@ -1,32 +1,24 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+// @ts-ignore
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {status} from '../screens/Dashboard';
 
-interface InfoCardProps {
-  title: string;
-  subtitle: string;
-  icon: string;
-  bgColor: string;
-  iconBg: string;
+interface StatusCardCardProps {
+  status: status;
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({
-  title,
-  subtitle,
-  icon,
-  bgColor,
-  iconBg,
-}) => {
+const StatusCard: React.FC<StatusCardCardProps> = ({status}) => {
   return (
-    <View style={[styles.card, {backgroundColor: bgColor}]}>
+    <View style={[styles.card, {backgroundColor: status.bgColor}]}>
       <View style={styles.row}>
         <View style={styles.textContainer}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
+          <Text style={styles.title}>{status.title}</Text>
+          <Text style={styles.subtitle}>{status.subtitle}</Text>
         </View>
         <TouchableOpacity
-          style={[styles.iconCircle, {backgroundColor: iconBg}]}>
-          <FontAwesome5 name={icon} size={14} color={bgColor} />
+          style={[styles.iconCircle, {backgroundColor: status.iconBg}]}>
+          <FontAwesome5 name={status.icon} size={14} color={status.bgColor} />
         </TouchableOpacity>
       </View>
     </View>
@@ -68,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default InfoCard;
+export default StatusCard;

@@ -17,8 +17,9 @@
     "react-native-circular-progress": "^1.4.1",
     "react-native-gifted-charts": "^1.4.20",
     "react-native-linear-gradient": "^2.8.3",
-    "react-native-paper": "^5.10.3",
+    "react-native-paper": "^5.13.1",
     "react-native-safe-area-context": "^5.3.0",
+    "react-native-screens": "^4.10.0",
     "react-native-svg": "^15.11.2",
     "react-native-vector-icons": "^10.2.0"
   },

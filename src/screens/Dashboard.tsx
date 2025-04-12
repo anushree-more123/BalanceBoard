@@ -10,32 +10,40 @@ import {
 import {LineChart} from 'react-native-gifted-charts';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
 import Header from '../components/Header';
-import BottomTabComp from '../components/BottomTab';
-import InfoCard from '../components/InfoCard';
+import WalletCard from '../components/WalletCard';
+import ActivityStatsCard from '../components/ActivityStatsCard';
+import StatusCard from '../components/StatusCard';
+import TaskCompletionCard from '../components/TaskCompletionCard';
+import CampaignTabs from '../components/CampeignTabs';
+import ActivityChart from '../components/ActivityChart';
+
+export interface status {
+  title: string;
+  subtitle: string;
+  icon: string;
+  bgColor: string;
+  iconBg: string;
+}
 
 const {width} = Dimensions.get('window');
 
 const Dashboard = () => {
-  const lineData = [
-    {value: 30},
-    {value: 50},
-    {value: 40},
-    {value: 60},
-    {value: 80},
-    {value: 70},
-    {value: 90},
+  const StatusDetails: status[] = [
+    {
+      title: 'Tips on increasing your go forward',
+      subtitle: 'Lorem ipsum dolor sit amet, consectetur',
+      icon: 'play',
+      bgColor: '#4A6FE3',
+      iconBg: '#ffffff',
+    },
+    {
+      title: 'Weekly task has been completed!',
+      subtitle: 'Lorem ipsum dolor sit amet, consectetur',
+      icon: 'check',
+      bgColor: '#34D399',
+      iconBg: '#ffffff',
+    },
   ];
-
-  const lineData2 = [
-    {value: 20},
-    {value: 40},
-    {value: 25},
-    {value: 55},
-    {value: 65},
-    {value: 60},
-    {value: 75},
-  ];
-
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Header />
@@ -44,114 +52,35 @@ const Dashboard = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={{marginVertical: 16}}>
-        <InfoCard
-          title="Tips on increasing your go forward"
-          subtitle="Lorem ipsum dolor sit amet, consectetur"
-          icon="play"
-          bgColor="#4A6FE3"
-          iconBg="#ffffff"
-        />
-        <InfoCard
-          title="Weekly task has been completed!"
-          subtitle="Lorem ipsum dolor sit amet, consectetur"
-          icon="check"
-          bgColor="#34D399"
-          iconBg="#ffffff"
-        />
+        {StatusDetails.map((status, index) => (
+          <StatusCard key={index + 1} status={status} />
+        ))}
       </ScrollView>
 
-      <View style={styles.walletCard}>
-        <Text style={styles.walletAmount}>$146.00</Text>
-        <Text style={styles.walletLabel}>Wallet Balance</Text>
-        <View style={styles.divider} />
-        <View style={styles.walletInfoRow}>
-          <View>
-            <Text style={styles.walletInfo}>10th Jul, 2020</Text>
-            <Text style={styles.walletInfoLabel}>Auto fill date</Text>
-          </View>
-          <View>
-            <Text style={styles.walletInfo}>$20.00</Text>
-            <Text style={styles.walletInfoLabel}>Auto fill amount</Text>
-          </View>
-        </View>
+      <WalletCard />
+
+      <View style={{flexDirection: 'row', gap: 10}}>
+        <ActivityStatsCard
+          title="Activities this week"
+          count={136}
+          isPositive={false}
+          trend={-7.6}
+          avgText="Avg. 26 calls per day"
+        />
+
+        <ActivityStatsCard
+          title="Activities this month"
+          count={986}
+          isPositive={true}
+          trend={10.6}
+          avgText="Avg. 146 calls per week"
+        />
       </View>
 
-      <View style={styles.activityRow}>
-        <View style={styles.activityCard}>
-          <Text style={styles.activityCountRed}>136 Calls</Text>
-          <Text style={styles.activityChangeRed}>▼ 7.6%</Text>
-          <Text style={styles.activityLabel}>Activities this week</Text>
-          <Text style={styles.activitySub}>Avg. 26 calls per day</Text>
-        </View>
-        <View style={styles.activityCard}>
-          <Text style={styles.activityCountGreen}>986 Calls</Text>
-          <Text style={styles.activityChangeGreen}>▲ 10.6%</Text>
-          <Text style={styles.activityLabel}>Activities this month</Text>
-          <Text style={styles.activitySub}>Avg. 146 calls per week</Text>
-        </View>
-      </View>
+      <TaskCompletionCard />
 
-      <View style={styles.progressCard}>
-        <AnimatedCircularProgress
-          size={60}
-          width={6}
-          fill={76}
-          tintColor="#FFFFFF"
-          backgroundColor="rgba(255,255,255,0.2)"
-          rotation={0}>
-          {(fill: any) => <Text style={styles.progressText}>76%</Text>}
-        </AnimatedCircularProgress>
-        <View style={{marginLeft: 16, flex: 1}}>
-          <Text style={styles.progressTitle}>Overal Task Completion</Text>
-          <Text style={styles.progressSub}>
-            Achievement against total calls targeted for the month of September
-          </Text>
-        </View>
-      </View>
-
-      <View style={styles.tabsRow}>
-        <Text style={styles.tabActive}>Recent</Text>
-        <Text style={styles.tab}>All Groups</Text>
-        <Text style={styles.tab}>Archived</Text>
-      </View>
-
-      <View style={styles.campaignContainer}>
-        <View style={styles.campaignCard}>
-          <Text style={styles.campaignTitle}>Lead Generation Campaign</Text>
-          <Text style={styles.campaignText}>Lorem ipsum dolor sit amet...</Text>
-          <View style={styles.campaignStats}>
-            <Text>343 Completed</Text>
-            <Text>368 Pending</Text>
-          </View>
-        </View>
-        <View style={styles.campaignCard}>
-          <Text style={styles.campaignTitle}>Product Launch Marketing</Text>
-          <Text style={styles.campaignText}>Lorem ipsum dolor sit amet...</Text>
-          <View style={styles.campaignStats}>
-            <Text>488 Completed</Text>
-            <Text>105 Pending</Text>
-          </View>
-        </View>
-      </View>
-
-      <Text style={styles.sectionTitle}>September Activities</Text>
-      <LineChart
-        data={lineData}
-        data2={lineData2}
-        height={180}
-        spacing={30}
-        initialSpacing={10}
-        color1="#4F46E5"
-        color2="#9CA3AF"
-        noOfSections={4}
-        animateOnDataChange
-        scrollToEnd
-        thickness={2}
-        hideRules
-        showVerticalLines
-      />
-
-      <BottomTabComp />
+      <CampaignTabs />
+      <ActivityChart />
     </ScrollView>
   );
 };

@@ -2,15 +2,26 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Dashboard from './src/screens/Dashboard';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import BottomTab from './src/components/BottomTab';
+import MainTabNavigator from './src/navigation/MainTabNavigator';
+import {NavigationContainer} from '@react-navigation/native';
+import {PaperProvider, Provider} from 'react-native-paper';
 
+// const App = () => {
+//   return (
+//     <SafeAreaProvider>
+//       <SafeAreaView style={styles.container}>
+//         <Dashboard />
+//       </SafeAreaView>
+//     </SafeAreaProvider>
+//   );
+// };
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <Dashboard />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <PaperProvider>
+      <NavigationContainer>
+        <MainTabNavigator />
+      </NavigationContainer>
+    </PaperProvider>
   );
 };
 

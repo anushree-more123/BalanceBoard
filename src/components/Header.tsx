@@ -1,16 +1,21 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
+import {Avatar} from 'react-native-paper';
+import {colors} from '../theme/colors';
 
 const Header = () => {
   return (
-    <View style={styles.headerContainer}>
+    <View style={styles.header}>
       <View>
-        <Text style={styles.greeting}>Hi, Clarence</Text>
-        <Text style={styles.phone}>(801) 923-2930</Text>
+        <Text style={styles.hiText}>Hi, Clarence</Text>
+        <Text style={styles.subText}>(801) 923-2930</Text>
       </View>
-      <Image
-        source={{uri: 'https://i.pravatar.cc/100'}}
-        style={styles.avatar}
-      />
+      <View style={styles.avatarWrapper}>
+        <Avatar.Image
+          size={40}
+          source={{uri: 'https://i.pravatar.cc/300'}}
+          style={{backgroundColor: 'transparent'}}
+        />
+      </View>
     </View>
   );
 };
@@ -18,12 +23,30 @@ const Header = () => {
 export default Header;
 
 const styles = StyleSheet.create({
-  headerContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: colors.ghostWhite,
+    padding: 16,
+  },
+  header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: 16,
   },
-  greeting: {fontSize: 22, fontWeight: 'bold', color: '#1F2937'},
-  phone: {fontSize: 14, color: '#6B7280'},
-  avatar: {width: 50, height: 50, borderRadius: 25},
+  hiText: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.persianBlue,
+  },
+  subText: {
+    fontSize: 14,
+    color: colors.cadet,
+  },
+  avatarWrapper: {
+    borderWidth: 3,
+    borderColor: colors.persianBlue,
+    borderRadius: 999,
+    padding: 2,
+  },
 });
