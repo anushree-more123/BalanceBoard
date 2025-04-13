@@ -1,24 +1,31 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 // @ts-ignore
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/FontAwesome6';
 import {status} from '../screens/Dashboard';
+import {colors} from '../theme/colors';
 
-interface StatusCardCardProps {
+interface StatusCardProps {
   status: status;
 }
 
-const StatusCard: React.FC<StatusCardCardProps> = ({status}) => {
+const StatusCard: React.FC<StatusCardProps> = ({status}) => {
   return (
     <View style={[styles.card, {backgroundColor: status.bgColor}]}>
-      <View style={styles.row}>
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{status.title}</Text>
-          <Text style={styles.subtitle}>{status.subtitle}</Text>
+      <View style={styles.rowTop}>
+        <View style={styles.iconBadgeWrapper}>
+          <View style={[styles.iconBadge, {backgroundColor: status.iconBg}]}>
+            <Icon name={status.mainIcon} size={14} color={colors.white} />
+          </View>
         </View>
+        <Text style={styles.title}>{status.title}</Text>
+      </View>
+
+      <View style={styles.rowBottom}>
+        <Text style={styles.subtitle}>{status.subtitle}</Text>
         <TouchableOpacity
-          style={[styles.iconCircle, {backgroundColor: status.iconBg}]}>
-          <FontAwesome5 name={status.icon} size={14} color={status.bgColor} />
+          style={[styles.iconCircle, {backgroundColor: colors.white}]}>
+          <Icon name={status.icon} size={14} color={status.bgColor} />
         </TouchableOpacity>
       </View>
     </View>
@@ -29,32 +36,48 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 16,
     padding: 16,
-    width: 220,
+    width: 240,
+    marginRight: 12,
+    justifyContent: 'space-between',
+  },
+  rowTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  iconBadgeWrapper: {
     marginRight: 12,
   },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  iconBadge: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    justifyContent: 'center',
     alignItems: 'center',
-  },
-  textContainer: {
-    flex: 1,
-    paddingRight: 10,
   },
   title: {
     color: '#ffffff',
     fontSize: 13,
     fontWeight: 'bold',
-    marginBottom: 4,
+    flex: 1,
+    flexWrap: 'wrap',
+  },
+  rowBottom: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   subtitle: {
     color: '#E5E7EB',
     fontSize: 11,
+    flex: 1,
+    flexWrap: 'wrap',
+    paddingRight: 10,
   },
   iconCircle: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },

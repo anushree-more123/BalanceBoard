@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import OverviewComp from '../components/OverviewComp';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/FontAwesome6';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Dashboard from '../screens/Dashboard';
 
 const Tab = createBottomTabNavigator();
@@ -13,7 +13,7 @@ const MainTabNavigator = () => {
       screenOptions={({route}) => ({
         tabBarIcon: ({color, size}) => {
           let iconName = '';
-          if (route.name === 'Overview') iconName = 'chart-line';
+          if (route.name === 'Overview') iconName = 'chart-areaspline-variant';
           else if (route.name === 'Groups') iconName = 'folder-outline';
           else if (route.name === 'Team') iconName = 'account-group-outline';
           else if (route.name === 'Settings') iconName = 'cog-outline';
