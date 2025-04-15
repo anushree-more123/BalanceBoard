@@ -8,4 +8,6 @@ export const colors = {
   aquamarine: '#5EDBAE',
   indianRed: '#E24E58',
   darkPastelGreen: '#34B549',
+  purple: '#8E44AD',
+  black: '#000',
 };

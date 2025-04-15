@@ -1,9 +1,12 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import OverviewComp from '../components/OverviewComp';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Dashboard from '../screens/Dashboard';
+import GroupsScreen from '../screens/GroupsScreen';
+import TeamScreen from '../screens/TeamScreen';
+import SettingScreen from '../screens/SettingScreen';
+import {colors} from '../theme/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,14 +22,14 @@ const MainTabNavigator = () => {
           else if (route.name === 'Settings') iconName = 'cog-outline';
           return <Icon name={iconName} color={color} size={size} />;
         },
-        tabBarActiveTintColor: '#2F3BAD',
-        tabBarInactiveTintColor: '#A0ADBC',
+        tabBarActiveTintColor: colors.persianBlue,
+        tabBarInactiveTintColor: colors.violet,
         headerShown: false,
       })}>
       <Tab.Screen name="Overview" component={Dashboard} />
-      <Tab.Screen name="Groups" component={OverviewComp} />
-      <Tab.Screen name="Team" component={OverviewComp} />
-      <Tab.Screen name="Settings" component={OverviewComp} />
+      <Tab.Screen name="Groups" component={GroupsScreen} />
+      <Tab.Screen name="Team" component={TeamScreen} />
+      <Tab.Screen name="Settings" component={SettingScreen} />
     </Tab.Navigator>
   );
 };

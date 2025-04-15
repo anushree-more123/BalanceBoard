@@ -12,7 +12,7 @@ const TaskCompletionCard = () => {
         size={60}
         width={6}
         fill={76}
-        tintColor="#FFFFFF"
+        tintColor={colors.white}
         backgroundColor="rgba(255,255,255,0.2)"
         rotation={0}>
         {() => <Text style={styles.progressText}>76%</Text>}
@@ -32,13 +32,13 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     backgroundColor: colors.neonBlue,
-    borderRadius: 5,
+    borderRadius: 6,
     padding: 16,
     alignItems: 'center',
     marginVertical: 10,
   },
   progressText: {
-    color: '#FFFFFF',
+    color: colors.white,
     fontWeight: '700',
     fontSize: 14,
   },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   subtitle: {
-    color: '#E0E4FF',
+    color: colors.ghostWhite,
     fontSize: 12,
     marginTop: 4,
   },

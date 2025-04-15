@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Avatar, IconButton} from 'react-native-paper';
 import {colors} from '../theme/colors';
 //@ts-ignore
@@ -21,11 +21,13 @@ const WalletCard = () => {
             <Text style={styles.subText}>Wallet Balance</Text>
           </View>
         </View>
-        <Icon
-          name="chevron-right-circle-outline"
-          size={25}
-          color={colors.neonBlue}
-        />
+        <TouchableOpacity>
+          <Icon
+            name="chevron-right-circle-outline"
+            size={25}
+            color={colors.cadet}
+          />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.divider} />
@@ -50,7 +52,7 @@ const WalletCard = () => {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.white,
-    borderRadius: 5,
+    borderRadius: 6,
     padding: 16,
     marginBottom: 16,
     elevation: 3,
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   walletIcon: {
-    backgroundColor: '#F0F4FF',
+    backgroundColor: colors.ghostWhite,
   },
   balanceText: {
     marginLeft: 10,
@@ -90,7 +92,6 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 1,
-    alignItems: 'center',
   },
   itemTitle: {
     fontWeight: '600',

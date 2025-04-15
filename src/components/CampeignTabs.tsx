@@ -116,7 +116,7 @@ const CampeignTabs = () => {
             );
           })
         ) : (
-          <Text style={styles.noData}>No items in this tab.</Text>
+          <Text style={styles.noData}>No data found.</Text>
         )}
       </ScrollView>
     </View>
@@ -168,11 +168,11 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: colors.white,
-    borderRadius: 5,
+    borderRadius: 6,
     padding: 16,
     marginBottom: 16,
     width: cardWidth,
-    shadowColor: '#000',
+    shadowColor: colors.black,
     shadowOpacity: 0.05,
     shadowRadius: 5,
     shadowOffset: {width: 0, height: 2},
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   progressBarBg: {
-    backgroundColor: '#eee',
+    backgroundColor: colors.ghostWhite,
     height: 4,
     borderRadius: 4,
     overflow: 'hidden',
