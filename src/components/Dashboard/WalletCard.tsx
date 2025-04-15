@@ -1,11 +1,16 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Avatar, IconButton} from 'react-native-paper';
-import {colors} from '../theme/colors';
+import {colors} from '../../theme/colors';
+import {useSelector} from 'react-redux';
+import moment from 'moment';
+import {RootState} from '../../store/store';
 //@ts-ignore
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const WalletCard = () => {
+  const {balanceDetails} = useSelector((state: RootState) => state.balance);
+  console.log('balanceDetails', balanceDetails);
   return (
     <View style={styles.card}>
       <View style={styles.topRow}>
@@ -17,29 +22,35 @@ const WalletCard = () => {
             style={styles.walletIcon}
           />
           <View style={styles.balanceText}>
-            <Text style={styles.amount}>$146.00</Text>
+            <Text style={styles.amount}>${balanceDetails.balance}</Text>
             <Text style={styles.subText}>Wallet Balance</Text>
           </View>
         </View>
-        <Icon
-          name="chevron-right-circle-outline"
-          size={25}
-          color={colors.neonBlue}
-        />
+        <TouchableOpacity>
+          <Icon
+            name="chevron-right-circle-outline"
+            size={25}
+            color={colors.cadet}
+          />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.divider} />
 
       <View style={styles.bottomRow}>
         <View style={styles.item}>
-          <Text style={styles.itemTitle}>10th Jul, 2020</Text>
+          <Text style={styles.itemTitle}>
+            {moment(balanceDetails.auto_fill_date).format('Do MMM, YYYY')}
+          </Text>
           <Text style={styles.itemSubtitle}>Auto fill date</Text>
         </View>
 
         <View style={styles.verticalDivider} />
 
         <View style={styles.item}>
-          <Text style={styles.itemTitle}>$20.00</Text>
+          <Text style={styles.itemTitle}>
+            {balanceDetails.auto_fill_amount}
+          </Text>
           <Text style={styles.itemSubtitle}>Auto fill amount</Text>
         </View>
       </View>
@@ -50,7 +61,7 @@ const WalletCard = () => {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.white,
-    borderRadius: 5,
+    borderRadius: 6,
     padding: 16,
     marginBottom: 16,
     elevation: 3,
@@ -65,7 +76,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   walletIcon: {
-    backgroundColor: '#F0F4FF',
+    backgroundColor: colors.ghostWhite,
   },
   balanceText: {
     marginLeft: 10,
@@ -90,7 +101,6 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 1,
-    alignItems: 'center',
   },
   itemTitle: {
     fontWeight: '600',

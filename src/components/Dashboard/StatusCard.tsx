@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/FontAwesome6';
-import {status} from '../screens/Dashboard';
-import {colors} from '../theme/colors';
+import {status} from '../../screens/Dashboard';
+import {colors} from '../../theme/colors';
 
 interface StatusCardProps {
   status: status;
@@ -15,7 +15,7 @@ const StatusCard: React.FC<StatusCardProps> = ({status}) => {
       <View style={styles.rowTop}>
         <View style={styles.iconBadgeWrapper}>
           <View style={[styles.iconBadge, {backgroundColor: status.iconBg}]}>
-            <Icon name={status.mainIcon} size={14} color={colors.white} />
+            <Icon name={status.mainIcon} size={18} color={colors.white} />
           </View>
         </View>
         <Text style={styles.title}>{status.title}</Text>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: '#ffffff',
+    color: colors.white,
     fontSize: 13,
     fontWeight: 'bold',
     flex: 1,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   subtitle: {
-    color: '#E5E7EB',
+    color: colors.ghostWhite,
     fontSize: 11,
     flex: 1,
     flexWrap: 'wrap',

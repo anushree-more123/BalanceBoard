@@ -1,13 +1,18 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {Avatar} from 'react-native-paper';
-import {colors} from '../theme/colors';
+import {colors} from '../../theme/colors';
+// @ts-ignore
+import Icon from 'react-native-vector-icons/FontAwesome6';
 
 const Header = () => {
   return (
     <View style={styles.header}>
       <View>
         <Text style={styles.hiText}>Hi, Clarence</Text>
-        <Text style={styles.subText}>(801) 923-2930</Text>
+        <View style={styles.phoneContainer}>
+          <Icon name={'phone-volume'} size={18} color={colors.cadet} />
+          <Text style={styles.subText}>(801) 923-2930</Text>
+        </View>
       </View>
       <View style={styles.avatarWrapper}>
         <Avatar.Image
@@ -32,7 +37,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
   },
   hiText: {
     fontSize: 20,
@@ -48,5 +52,9 @@ const styles = StyleSheet.create({
     borderColor: colors.persianBlue,
     borderRadius: 999,
     padding: 2,
+  },
+  phoneContainer: {
+    flexDirection: 'row',
+    gap: 10,
   },
 });

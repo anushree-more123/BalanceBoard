@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 // @ts-ignore
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from '../theme/colors';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {colors} from '../../theme/colors';
 
 interface ActivityProps {
   title: string;
@@ -29,7 +29,7 @@ const ActivityStatsCard: React.FC<ActivityProps> = ({
       <View style={styles.row}>
         <Text style={[styles.count, {color: trendColor}]}>{count}</Text>
         <Text style={[styles.callsLabel, {color: trendColor}]}> Calls</Text>
-        <MaterialCommunityIcons
+        <Icon
           name={trendIcon}
           size={14}
           color={trendColor}
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     backgroundColor: colors.white,
-    borderRadius: 5,
+    borderRadius: 6,
     padding: 16,
     elevation: 2,
   },

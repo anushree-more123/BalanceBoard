@@ -1,9 +1,7 @@
-// File: src/components/TaskCompletionCard.tsx
-
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
-import {colors} from '../theme/colors'; // you already defined `neonBlue`, `white`, etc.
+import {colors} from '../../theme/colors';
 
 const TaskCompletionCard = () => {
   return (
@@ -12,7 +10,7 @@ const TaskCompletionCard = () => {
         size={60}
         width={6}
         fill={76}
-        tintColor="#FFFFFF"
+        tintColor={colors.white}
         backgroundColor="rgba(255,255,255,0.2)"
         rotation={0}>
         {() => <Text style={styles.progressText}>76%</Text>}
@@ -21,7 +19,7 @@ const TaskCompletionCard = () => {
       <View style={styles.textContainer}>
         <Text style={styles.title}>Overal Task Completion</Text>
         <Text style={styles.subtitle}>
-          Achivement agains total calls targeted{'\n'}for the mont of September
+          Achivement agains total calls targeted for the mont of September
         </Text>
       </View>
     </View>
@@ -32,13 +30,13 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     backgroundColor: colors.neonBlue,
-    borderRadius: 5,
+    borderRadius: 6,
     padding: 16,
     alignItems: 'center',
     marginVertical: 10,
   },
   progressText: {
-    color: '#FFFFFF',
+    color: colors.white,
     fontWeight: '700',
     fontSize: 14,
   },
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   subtitle: {
-    color: '#E0E4FF',
+    color: colors.ghostWhite,
     fontSize: 12,
     marginTop: 4,
   },
