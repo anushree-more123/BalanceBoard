@@ -4,23 +4,23 @@ import {View, Text, StyleSheet} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../theme/colors';
 
-type Props = {
+interface ActivityProps {
   title: string;
   count: number;
   isPositive: boolean;
   trend: number;
   avgText: string;
-};
+}
 
-const ActivityStatsCard = ({
+const ActivityStatsCard: React.FC<ActivityProps> = ({
   title,
   count,
   isPositive,
   trend,
   avgText,
-}: Props) => {
+}) => {
   const trendColor = isPositive ? colors.darkPastelGreen : colors.indianRed;
-  const trendIcon = isPositive ? 'arrow-up-bold' : 'arrow-down-bold';
+  const trendIcon = isPositive ? 'arrow-top-right' : 'arrow-bottom-left';
 
   return (
     <View style={styles.card}>

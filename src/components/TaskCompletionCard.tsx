@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     backgroundColor: colors.neonBlue,
-    borderRadius: 16,
+    borderRadius: 5,
     padding: 16,
     alignItems: 'center',
     marginVertical: 10,

@@ -1,159 +1,231 @@
-// File: src/components/CampaignTabs.tsx
-
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+//@ts-ignore
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../theme/colors';
 
-const TABS = ['Recent', 'All Groups', 'Archived'];
+const screenWidth = Dimensions.get('window').width;
+const cardSpacing = 16;
+const cardWidth = (screenWidth - cardSpacing * 3) / 2;
 
-const campaigns = [
-  {
-    title: 'Lead Generation Campaign',
-    desc: 'Lorem ipsum dolor sit amet, consectetur...',
-    completed: 343,
-    pending: 368,
-  },
-  {
-    title: 'Product Launch Marketing',
-    desc: 'Lorem ipsum dolor sit amet, consectetur...',
-    completed: 488,
-    pending: 105,
-  },
-];
+const tabs = ['Recent', 'All Groups', 'Archived'] as const;
+type TabType = (typeof tabs)[number];
 
-const CampaignTabs = () => {
-  const [activeTab, setActiveTab] = useState('Recent');
+const campaigns = {
+  Recent: [
+    {
+      title: 'Lead Generation Campaign',
+      completed: 343,
+      pending: 368,
+    },
+    {
+      title: 'Product Launch Marketing',
+      completed: 488,
+      pending: 105,
+    },
+  ],
+  'All Groups': [],
+  Archived: [],
+};
 
-  const renderTab = (label: string) => (
-    <TouchableOpacity
-      key={label}
-      style={[styles.tabItem, activeTab === label && styles.activeTab]}
-      onPress={() => setActiveTab(label)}>
-      <Text
-        style={[styles.tabText, activeTab === label && styles.activeTabText]}>
-        {label}
-      </Text>
-    </TouchableOpacity>
-  );
-
-  const renderCard = ({item}: any) => (
-    <View style={styles.card}>
-      <Text style={styles.cardTitle}>{item.title}</Text>
-      <Text style={styles.cardDesc}>{item.desc}</Text>
-
-      <View style={styles.progressBar}>
-        <View
-          style={[
-            styles.progressFill,
-            {
-              width: `${
-                (item.completed / (item.completed + item.pending)) * 100
-              }%`,
-            },
-          ]}
-        />
-      </View>
-
-      <View style={styles.cardFooter}>
-        <View style={styles.statItem}>
-          <Text style={styles.statValue}>{item.completed}</Text>
-          <Text style={styles.statLabel}>Completed</Text>
-        </View>
-        <View style={styles.statItem}>
-          <Text style={styles.statValue}>{item.pending}</Text>
-          <Text style={[styles.statLabel, {color: colors.cadet}]}>Pending</Text>
-        </View>
-      </View>
-    </View>
-  );
-
+const CampeignTabs = () => {
+  const [activeTab, setActiveTab] = useState<TabType>('Recent');
   return (
-    <View>
-      <View style={styles.tabContainer}>{TABS.map(renderTab)}</View>
+    <View style={styles.container}>
+      <View style={styles.topBar}>
+        <View style={styles.tabs}>
+          {tabs.map(tab => {
+            const isActive = activeTab === tab;
+            const tabButton = (
+              <TouchableOpacity
+                key={tab}
+                onPress={() => setActiveTab(tab)}
+                style={isActive ? {} : styles.tab}>
+                <Text
+                  style={[styles.tabText, isActive && styles.activeTabText]}>
+                  {tab}
+                </Text>
+              </TouchableOpacity>
+            );
 
-      <FlatList
-        data={campaigns}
-        renderItem={renderCard}
-        keyExtractor={(item, index) => index.toString()}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{paddingVertical: 10}}
-      />
+            return isActive ? (
+              <LinearGradient
+                key={tab}
+                colors={[colors.neonBlue, colors.persianBlue]}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                style={[styles.tab, styles.activeTab]}>
+                {tabButton}
+              </LinearGradient>
+            ) : (
+              tabButton
+            );
+          })}
+        </View>
+        <TouchableOpacity style={styles.rightIcon}>
+          <Icon name="tune" size={22} color={colors.cadet} />
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView
+        contentContainerStyle={
+          campaigns[activeTab].length > 0
+            ? styles.cardGrid
+            : styles.noDataContainer
+        }>
+        {campaigns[activeTab].length > 0 ? (
+          campaigns[activeTab].map((item, index) => {
+            const total = item.completed + item.pending;
+            const percent = (item.completed / total) * 100;
+
+            return (
+              <View key={index} style={styles.card}>
+                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text style={styles.cardSubtitle}>
+                  Lorem ipsum dolor sit amet, consectetur..
+                </Text>
+
+                <View style={styles.progressBarBg}>
+                  <LinearGradient
+                    colors={[colors.persianBlue, colors.violet]}
+                    start={{x: 0, y: 0}}
+                    end={{x: 1, y: 0}}
+                    style={[styles.progressBarFill, {width: `${percent}%`}]}
+                  />
+                </View>
+
+                <View style={styles.cardFooter}>
+                  <View>
+                    <Text style={styles.cardFooterValue}>{item.completed}</Text>
+                    <Text style={styles.cardFooterLabel}>Completed</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.cardFooterValue}>{item.pending}</Text>
+                    <Text style={styles.cardFooterLabel}>Pending</Text>
+                  </View>
+                </View>
+              </View>
+            );
+          })
+        ) : (
+          <Text style={styles.noData}>No items in this tab.</Text>
+        )}
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  tabContainer: {
+  container: {
+    flex: 1,
+  },
+  topBar: {
     flexDirection: 'row',
-    marginBottom: 10,
-    paddingHorizontal: 12,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  tabs: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  tabItem: {
-    paddingVertical: 6,
-    paddingHorizontal: 16,
+  tab: {
+    paddingVertical: 8,
+    paddingHorizontal: 20,
     borderRadius: 20,
     backgroundColor: 'transparent',
   },
   activeTab: {
-    backgroundColor: colors.neonBlue,
+    borderRadius: 20,
   },
   tabText: {
+    color: colors.cadet,
+    fontWeight: '600',
     fontSize: 14,
-    color: colors.violet,
   },
   activeTabText: {
     color: colors.white,
-    fontWeight: '600',
+  },
+  rightIcon: {
+    padding: 6,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cardGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 2,
   },
   card: {
-    width: 260,
     backgroundColor: colors.white,
-    borderRadius: 16,
+    borderRadius: 5,
     padding: 16,
-    marginHorizontal: 10,
-    elevation: 3,
+    marginBottom: 16,
+    width: cardWidth,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 5,
+    shadowOffset: {width: 0, height: 2},
+    elevation: 2,
   },
   cardTitle: {
     color: colors.persianBlue,
-    fontWeight: '700',
+    fontWeight: '800',
     fontSize: 16,
+    marginBottom: 6,
   },
-  cardDesc: {
-    color: colors.cadet,
+  cardSubtitle: {
     fontSize: 12,
-    marginTop: 4,
-    marginBottom: 10,
+    color: colors.cadet,
+    marginBottom: 12,
   },
-  progressBar: {
-    height: 6,
-    backgroundColor: '#EEE',
-    borderRadius: 3,
+  progressBarBg: {
+    backgroundColor: '#eee',
+    height: 4,
+    borderRadius: 4,
     overflow: 'hidden',
-    marginBottom: 14,
+    marginBottom: 12,
   },
-  progressFill: {
-    backgroundColor: '#6B4EFF',
-    height: '100%',
+  progressBarFill: {
+    height: 4,
+    borderRadius: 4,
   },
   cardFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  statItem: {
-    alignItems: 'center',
-  },
-  statValue: {
-    fontWeight: '700',
+  cardFooterValue: {
+    fontWeight: 'bold',
     fontSize: 16,
     color: colors.persianBlue,
+    textAlign: 'center',
   },
-  statLabel: {
+  cardFooterLabel: {
     fontSize: 12,
-    color: colors.violet,
-    marginTop: 2,
+    color: colors.cadet,
+    textAlign: 'center',
+  },
+  noDataContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+  },
+  noData: {
+    textAlign: 'center',
+    color: colors.cadet,
+    fontSize: 16,
   },
 });
 
-export default CampaignTabs;
+export default CampeignTabs;

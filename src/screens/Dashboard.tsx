@@ -16,6 +16,7 @@ import StatusCard from '../components/StatusCard';
 import TaskCompletionCard from '../components/TaskCompletionCard';
 import CampaignTabs from '../components/CampeignTabs';
 import ActivityChart from '../components/ActivityChart';
+import {colors} from '../theme/colors';
 
 export interface status {
   title: string;
@@ -23,6 +24,7 @@ export interface status {
   icon: string;
   bgColor: string;
   iconBg: string;
+  mainIcon: string;
 }
 
 const {width} = Dimensions.get('window');
@@ -33,15 +35,17 @@ const Dashboard = () => {
       title: 'Tips on increasing your go forward',
       subtitle: 'Lorem ipsum dolor sit amet, consectetur',
       icon: 'play',
-      bgColor: '#4A6FE3',
-      iconBg: '#ffffff',
+      bgColor: colors.neonBlue,
+      iconBg: colors.persianBlue,
+      mainIcon: 'bell',
     },
     {
       title: 'Weekly task has been completed!',
       subtitle: 'Lorem ipsum dolor sit amet, consectetur',
-      icon: 'check',
-      bgColor: '#34D399',
-      iconBg: '#ffffff',
+      icon: 'square-check',
+      bgColor: colors.aquamarine,
+      iconBg: colors.darkPastelGreen,
+      mainIcon: 'square-check',
     },
   ];
   return (

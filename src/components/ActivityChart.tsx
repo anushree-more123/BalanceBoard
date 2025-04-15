@@ -1,8 +1,9 @@
-// File: src/components/ActivityChart.tsx
-
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {LineChart} from 'react-native-gifted-charts';
+//@ts-ignore
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {colors} from '../theme/colors';
 
 const ActivityChart = () => {
   const currentMonthData = [
@@ -24,14 +25,18 @@ const ActivityChart = () => {
     {value: 80},
     {value: 75},
   ];
+  const data = [{value: 15}, {value: 30}, {value: 26}, {value: 40}];
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>September Activities</Text>
-        <Text style={styles.chevron}>{'>'}</Text>
+        <Icon
+          name="chevron-right-circle-outline"
+          size={24}
+          color={colors.neonBlue}
+        />
       </View>
-
       <View style={styles.legendContainer}>
         <View style={styles.legendItem}>
           <View style={[styles.dot, {backgroundColor: '#8E44AD'}]} />
@@ -42,34 +47,29 @@ const ActivityChart = () => {
           <Text style={styles.legendText}>Previous Month</Text>
         </View>
       </View>
-
       <LineChart
-        areaChart
         curved
         data={currentMonthData}
         data2={previousMonthData}
-        thickness={2}
-        color1="#8E44AD"
-        color2="#1ABC9C"
-        hideAxesAndRules
-        hideDataPoints={false}
-        showVerticalLines
-        yAxisColor="transparent"
+        height={200}
+        spacing={44}
+        initialSpacing={0}
+        color1={'#8E44AD'}
+        color2={'#1ABC9C'}
+        textColor1="green"
+        dataPointsColor1="blue"
+        dataPointsColor2="red"
+        textShiftY={-2}
+        textShiftX={-5}
+        textFontSize={13}
+        hideDataPoints
+        hideXAxisText
+        hideYAxisText
+        dataPointsHeight={20}
+        dataPointsWidth={20}
+        noOfSections={3}
         xAxisColor="transparent"
-        backgroundColor="transparent"
-        noOfSections={4}
-        maxValue={100}
-        showXAxisIndices={false}
-        startFillColor1="#8E44AD20"
-        endFillColor1="#8E44AD05"
-        startFillColor2="#1ABC9C20"
-        endFillColor2="#1ABC9C05"
-        spacing={40}
-        height={180}
-        initialSpacing={20}
-        dataPointsColor1="#8E44AD"
-        dataPointsColor2="#1ABC9C"
-        dataPointsRadius={4}
+        yAxisColor="transparent"
       />
     </View>
   );
@@ -78,10 +78,13 @@ const ActivityChart = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
+    borderRadius: 5,
     padding: 16,
-    margin: 12,
-    elevation: 2,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 6,
+    elevation: 3,
   },
   header: {
     flexDirection: 'row',
@@ -92,10 +95,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 16,
     color: '#2F3BAD',
-  },
-  chevron: {
-    fontSize: 18,
-    color: '#566DFB',
   },
   legendContainer: {
     flexDirection: 'row',
@@ -115,7 +114,7 @@ const styles = StyleSheet.create({
   },
   legendText: {
     fontSize: 12,
-    color: '#666',
+    color: '#A0ADBC',
   },
 });
 

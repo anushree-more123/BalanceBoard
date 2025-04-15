@@ -1,9 +1,9 @@
-// File: src/components/WalletCard.tsx
-
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Avatar, IconButton} from 'react-native-paper';
 import {colors} from '../theme/colors';
+//@ts-ignore
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const WalletCard = () => {
   return (
@@ -12,8 +12,8 @@ const WalletCard = () => {
         <View style={styles.balanceRow}>
           <Avatar.Icon
             size={40}
-            icon="folder"
-            color={colors.neonBlue}
+            icon="wallet"
+            color={colors.persianBlue}
             style={styles.walletIcon}
           />
           <View style={styles.balanceText}>
@@ -21,7 +21,11 @@ const WalletCard = () => {
             <Text style={styles.subText}>Wallet Balance</Text>
           </View>
         </View>
-        <IconButton icon="chevron-right" size={20} iconColor={colors.cadet} />
+        <Icon
+          name="chevron-right-circle-outline"
+          size={25}
+          color={colors.neonBlue}
+        />
       </View>
 
       <View style={styles.divider} />
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
   amount: {
     fontSize: 20,
     fontWeight: '700',
-    color: colors.neonBlue,
+    color: colors.persianBlue,
   },
   subText: {
     color: colors.cadet,
