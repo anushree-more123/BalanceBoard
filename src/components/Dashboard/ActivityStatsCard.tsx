@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from '../theme/colors';
+import {colors} from '../../theme/colors';
 
 interface ActivityProps {
   title: string;

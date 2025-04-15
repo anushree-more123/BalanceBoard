@@ -1,26 +1,29 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {colors} from '../theme/colors';
+import Header from '../components/Common/Header';
 
 const TeamScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Team Screen</Text>
+      <Header />
+      <View style={styles.compContainer}>
+        <Text style={styles.text}>Team Screen</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container: {flex: 1, backgroundColor: colors.ghostWhite, padding: 16},
+  compContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.white,
   },
   text: {
     fontSize: 18,
     fontWeight: '500',
   },
 });
-
 export default TeamScreen;

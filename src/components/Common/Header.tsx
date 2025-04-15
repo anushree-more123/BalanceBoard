@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {Avatar} from 'react-native-paper';
-import {colors} from '../theme/colors';
+import {colors} from '../../theme/colors';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/FontAwesome6';
 

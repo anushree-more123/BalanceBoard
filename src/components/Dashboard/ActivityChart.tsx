@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {LineChart} from 'react-native-gifted-charts';
 //@ts-ignore
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from '../theme/colors';
+import {colors} from '../../theme/colors';
 
 const ActivityChart = () => {
   const currentMonthData = [

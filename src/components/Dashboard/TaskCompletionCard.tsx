@@ -1,9 +1,7 @@
-// File: src/components/TaskCompletionCard.tsx
-
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
-import {colors} from '../theme/colors'; // you already defined `neonBlue`, `white`, etc.
+import {colors} from '../../theme/colors';
 
 const TaskCompletionCard = () => {
   return (
@@ -21,7 +19,7 @@ const TaskCompletionCard = () => {
       <View style={styles.textContainer}>
         <Text style={styles.title}>Overal Task Completion</Text>
         <Text style={styles.subtitle}>
-          Achivement agains total calls targeted{'\n'}for the mont of September
+          Achivement agains total calls targeted for the mont of September
         </Text>
       </View>
     </View>

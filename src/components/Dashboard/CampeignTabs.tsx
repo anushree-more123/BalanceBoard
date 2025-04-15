@@ -10,7 +10,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 //@ts-ignore
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from '../theme/colors';
+import {colors} from '../../theme/colors';
 
 const screenWidth = Dimensions.get('window').width;
 const cardSpacing = 16;

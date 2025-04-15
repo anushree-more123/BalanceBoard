@@ -1,11 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Avatar, IconButton} from 'react-native-paper';
-import {colors} from '../theme/colors';
+import {colors} from '../../theme/colors';
+import {useSelector} from 'react-redux';
+import moment from 'moment';
+import {RootState} from '../../store/store';
 //@ts-ignore
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const WalletCard = () => {
+  const {balanceDetails} = useSelector((state: RootState) => state.balance);
+  console.log('balanceDetails', balanceDetails);
   return (
     <View style={styles.card}>
       <View style={styles.topRow}>
@@ -17,7 +22,7 @@ const WalletCard = () => {
             style={styles.walletIcon}
           />
           <View style={styles.balanceText}>
-            <Text style={styles.amount}>$146.00</Text>
+            <Text style={styles.amount}>${balanceDetails.balance}</Text>
             <Text style={styles.subText}>Wallet Balance</Text>
           </View>
         </View>
@@ -34,14 +39,18 @@ const WalletCard = () => {
 
       <View style={styles.bottomRow}>
         <View style={styles.item}>
-          <Text style={styles.itemTitle}>10th Jul, 2020</Text>
+          <Text style={styles.itemTitle}>
+            {moment(balanceDetails.auto_fill_date).format('Do MMM, YYYY')}
+          </Text>
           <Text style={styles.itemSubtitle}>Auto fill date</Text>
         </View>
 
         <View style={styles.verticalDivider} />
 
         <View style={styles.item}>
-          <Text style={styles.itemTitle}>$20.00</Text>
+          <Text style={styles.itemTitle}>
+            {balanceDetails.auto_fill_amount}
+          </Text>
           <Text style={styles.itemSubtitle}>Auto fill amount</Text>
         </View>
       </View>
