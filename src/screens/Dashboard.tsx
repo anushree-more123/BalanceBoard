@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import Header from '../components/Common/Header';
-import WalletCard from '../components/Dashboard/WalletCard';
+import BalanceCard from '../components/Dashboard/BalanceCard';
 import ActivityStatsCard from '../components/Dashboard/ActivityStatsCard';
 import StatusCard from '../components/Dashboard/StatusCard';
 import TaskCompletionCard from '../components/Dashboard/TaskCompletionCard';
 import CampaignTabs from '../components/Dashboard/CampeignTabs';
 import ActivityChart from '../components/Dashboard/ActivityChart';
 import {colors} from '../theme/colors';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {fetchBalanceData} from '../components/Dashboard/DashboardAction';
-import {AppDispatch, RootState} from '../store/store';
-import MainLoader from '../components/Common/MainLoader';
+import {AppDispatch} from '../store/store';
+import AnimatedCard from '../components/Common/AnimatedCard';
 
 export interface status {
   title: string;
@@ -42,58 +42,61 @@ const StatusDetails: status[] = [
 
 const Dashboard = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const {balanceLoader} = useSelector((state: RootState) => state.balance);
   useEffect(() => {
     dispatch(fetchBalanceData());
   }, []);
 
-  return balanceLoader ? (
-    <View style={styles.loaderWrapper}>
-      <MainLoader />
-    </View>
-  ) : (
+  return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Header />
+
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         style={{marginVertical: 16}}>
         {StatusDetails.map((status, index) => (
-          <StatusCard key={index + 1} status={status} />
+          <AnimatedCard delay={300} key={index + 1}>
+            <StatusCard status={status} />
+          </AnimatedCard>
         ))}
       </ScrollView>
-      <WalletCard />
+      <AnimatedCard delay={300}>
+        <BalanceCard />
+      </AnimatedCard>
+
       <View style={{flexDirection: 'row', gap: 10}}>
-        <ActivityStatsCard
-          title="Activities this week"
-          count={136}
-          isPositive={false}
-          trend={-7.6}
-          avgText="Avg. 26 calls per day"
-        />
-        <ActivityStatsCard
-          title="Activities this month"
-          count={986}
-          isPositive={true}
-          trend={10.6}
-          avgText="Avg. 146 calls per week"
-        />
+        <AnimatedCard delay={300}>
+          <ActivityStatsCard
+            title="Activities this week"
+            count={136}
+            isPositive={false}
+            trend={-7.6}
+            avgText="Avg. 26 calls per day"
+          />
+        </AnimatedCard>
+        <AnimatedCard delay={300}>
+          <ActivityStatsCard
+            title="Activities this month"
+            count={986}
+            isPositive={true}
+            trend={10.6}
+            avgText="Avg. 146 calls per week"
+          />
+        </AnimatedCard>
       </View>
-      <TaskCompletionCard />
+      <AnimatedCard delay={300}>
+        <TaskCompletionCard />
+      </AnimatedCard>
       <CampaignTabs />
-      <ActivityChart />
+      <AnimatedCard delay={300}>
+        <ActivityChart />
+      </AnimatedCard>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: colors.ghostWhite, padding: 16},
-  loaderWrapper: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.ghostWhite,
-  },
 });
 
 export default Dashboard;

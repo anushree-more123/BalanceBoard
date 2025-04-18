@@ -13,7 +13,7 @@ const ActivityChart = () => {
     {value: 20},
     {value: 15},
     {value: 20},
-    {value: 15},
+    {value: 10},
   ];
 
   const previousMonthData = [
@@ -82,11 +82,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 6,
     padding: 16,
-    shadowColor: colors.black,
-    shadowOpacity: 0.05,
-    shadowOffset: {width: 0, height: 2},
-    shadowRadius: 6,
-    elevation: 3,
+    marginBottom: 16,
+    elevation: 2,
   },
   header: {
     flexDirection: 'row',
