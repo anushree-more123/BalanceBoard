@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Dashboard from '../screens/Dashboard';
+import DashboardScreen from '../screens/DashboardScreen';
 import GroupsScreen from '../screens/GroupsScreen';
 import TeamScreen from '../screens/TeamScreen';
 import SettingScreen from '../screens/SettingScreen';
@@ -26,7 +26,7 @@ const MainTabNavigator = () => {
         tabBarInactiveTintColor: colors.violet,
         headerShown: false,
       })}>
-      <Tab.Screen name="Overview" component={Dashboard} />
+      <Tab.Screen name="Overview" component={DashboardScreen} />
       <Tab.Screen name="Groups" component={GroupsScreen} />
       <Tab.Screen name="Team" component={TeamScreen} />
       <Tab.Screen name="Settings" component={SettingScreen} />

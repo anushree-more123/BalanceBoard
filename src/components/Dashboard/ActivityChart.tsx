@@ -14,6 +14,7 @@ const ActivityChart = () => {
     {value: 15},
     {value: 20},
     {value: 10},
+    {value: 15},
   ];
 
   const previousMonthData = [
@@ -24,6 +25,7 @@ const ActivityChart = () => {
     {value: 20},
     {value: 25},
     {value: 20},
+    {value: 25},
   ];
   const data = [{value: 15}, {value: 30}, {value: 26}, {value: 40}];
 

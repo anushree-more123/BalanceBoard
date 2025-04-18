@@ -11,7 +11,6 @@ import LinearGradient from 'react-native-linear-gradient';
 //@ts-ignore
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../theme/colors';
-import AnimatedCard from '../Common/AnimatedCard';
 
 const screenWidth = Dimensions.get('window').width;
 const cardSpacing = 16;
@@ -88,36 +87,32 @@ const CampeignTabs = () => {
             const percent = (item.completed / total) * 100;
 
             return (
-              <AnimatedCard delay={300}>
-                <View key={index} style={styles.card}>
-                  <Text style={styles.cardTitle}>{item.title}</Text>
-                  <Text style={styles.cardSubtitle}>
-                    Lorem ipsum dolor sit amet, consectetur..
-                  </Text>
+              <View key={index} style={styles.card}>
+                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text style={styles.cardSubtitle}>
+                  Lorem ipsum dolor sit amet, consectetur..
+                </Text>
 
-                  <View style={styles.progressBarBg}>
-                    <LinearGradient
-                      colors={[colors.persianBlue, colors.violet]}
-                      start={{x: 0, y: 0}}
-                      end={{x: 1, y: 0}}
-                      style={[styles.progressBarFill, {width: `${percent}%`}]}
-                    />
+                <View style={styles.progressBarBg}>
+                  <LinearGradient
+                    colors={[colors.persianBlue, colors.violet]}
+                    start={{x: 0, y: 0}}
+                    end={{x: 1, y: 0}}
+                    style={[styles.progressBarFill, {width: `${percent}%`}]}
+                  />
+                </View>
+
+                <View style={styles.cardFooter}>
+                  <View>
+                    <Text style={styles.cardFooterValue}>{item.completed}</Text>
+                    <Text style={styles.cardFooterLabel}>Completed</Text>
                   </View>
-
-                  <View style={styles.cardFooter}>
-                    <View>
-                      <Text style={styles.cardFooterValue}>
-                        {item.completed}
-                      </Text>
-                      <Text style={styles.cardFooterLabel}>Completed</Text>
-                    </View>
-                    <View>
-                      <Text style={styles.cardFooterValue}>{item.pending}</Text>
-                      <Text style={styles.cardFooterLabel}>Pending</Text>
-                    </View>
+                  <View>
+                    <Text style={styles.cardFooterValue}>{item.pending}</Text>
+                    <Text style={styles.cardFooterLabel}>Pending</Text>
                   </View>
                 </View>
-              </AnimatedCard>
+              </View>
             );
           })
         ) : (
