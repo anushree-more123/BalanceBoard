@@ -11,7 +11,7 @@ const TaskCompletionCard = () => {
         width={6}
         fill={76}
         tintColor={colors.white}
-        backgroundColor="rgba(255,255,255,0.2)"
+        backgroundColor={colors.persianBlue}
         rotation={0}>
         {() => <Text style={styles.progressText}>76%</Text>}
       </AnimatedCircularProgress>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 16,
     alignItems: 'center',
-    marginVertical: 10,
+    marginBottom: 16,
   },
   progressText: {
     color: colors.white,

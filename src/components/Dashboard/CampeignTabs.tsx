@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   tabs: {
+    width: '85%',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

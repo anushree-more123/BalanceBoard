@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/FontAwesome6';
-import {status} from '../../screens/Dashboard';
+import {status} from '../../screens/DashboardScreen';
 import {colors} from '../../theme/colors';
 
 interface StatusCardProps {
