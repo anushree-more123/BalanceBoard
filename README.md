@@ -1,6 +1,6 @@
 # 📊 BalanceBoard – React Native Dashboard UI
 
-**BalanceBoard** is a sleek mobile dashboard UI built using **React Native** and **TypeScript**, featuring animated charts, responsive layouts, and clean visual styling.
+**BalanceBoard** is a mobile dashboard UI built using **React Native** and **TypeScript**, featuring animated charts, responsive layouts, and clean visual styling.
 
 ## ✨ Features
 
@@ -19,3 +19,11 @@
 - **Chart Libraries**:
   - `react-native-gifted-charts`
   - `react-native-circular-progress`
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="Output/BalanceBorad-SS1.png" alt="Dashboard Screenshot 1" width="200" />
+  <img src="Output/BalanceBorad-SS1.png" alt="Dashboard Screenshot 2" width="200" />
+  <img src="BalanceBoard.gif" alt="Dashboard gif" width="200" />
+</p>
