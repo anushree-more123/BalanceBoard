@@ -24,6 +24,8 @@
 
 <p align="center">
   <img src="Output/BalanceBorad-SS1.png" alt="Dashboard Screenshot 1" width="200" />
-  <img src="Output/BalanceBorad-SS1.png" alt="Dashboard Screenshot 2" width="200" />
-  <img src="BalanceBoard.gif" alt="Dashboard gif" width="200" />
+   &nbsp;&nbsp;
+  <img src="Output/BalanceBorad-SS2.png" alt="Dashboard Screenshot 2" width="200" />
+   &nbsp;&nbsp;
+  <img src="Output/BalanceBoard.gif" alt="Dashboard gif" width="200" />
 </p>
